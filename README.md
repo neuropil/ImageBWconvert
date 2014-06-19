@@ -1,6 +1,8 @@
 ImageBWconvert
 ==============
 
+Download zipped files; unzip files on local computer; place files on Matlab path
+
 1. Run ImageBWconvert from the Matlab command window; a GUI window will appear with options
 2. Select Batch Option : single image or batch image
 3. Select standard deviation 
