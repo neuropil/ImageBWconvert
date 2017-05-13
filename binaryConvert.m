@@ -40,7 +40,7 @@ switch batchToggle
     
     case 0
  
-        [fileName,fileLoc,~] = uigetfile({'*.tiff','*.tif'});
+        [fileName,fileLoc,~] = uigetfile({'*.tiff';'*.tif'});
         
         cd(fileLoc);
         tempImage = imread(fileName);

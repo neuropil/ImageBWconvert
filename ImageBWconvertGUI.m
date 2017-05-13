@@ -115,12 +115,32 @@ if ischar(binaryImages.filenames);
     binaryImages.images = {binaryImages.images};
 end
 
-imageNames = binaryImages.filenames;
+% Rename extension for export
+imSel = questdlg('Select IM export type','Export','TIF','TIFF','JPEG','TIF');
+
+switch imSel
+    case 'TIF'
+        imExt = '.tif';
+    case 'TIFF'
+        imExt = '.tiff';
+    case 'JPEG'
+        imExt = 'jpg';
+end
+
+tmpRename = binaryImages.filenames;
+newRname = cell(size(tmpRename));
+for ti = 1:length(tmpRename)
+    [~,fname,~] = fileparts(tmpRename{ti});
+    newRname{ti} = [fname,imExt];
+end
+
+
+imageNames = newRname;
 cd(binaryImages.saveLoc)
-for iims = 1:length(imageNames);
+for iims = 1:length(imageNames)
     cd(binaryImages.saveLoc)
 
-    imwrite(binaryImages.images{iims},binaryImages.filenames{iims})
+    imwrite(binaryImages.images{iims},imageNames{iims}, 'Compression','none')
 end
 
 set(handles.batchPanel,'Visible','on');
